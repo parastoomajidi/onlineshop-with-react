@@ -1,25 +1,33 @@
 import logo from './logo.svg';
 import './App.css';
 
+// task 2 map the list
 function App() {
-  const age = 25;
+  const classes =[
+    {name:"html",finished: true},
+    {name:"JS", finished: false},
+    {name:"CSS", finished: true}
+  ];
+
   return(
-   <div className='App'>
-    {age >34 ? <h1>faild</h1> : <h1>passed</h1>}
-    <button type='submit' className={age>24 ? "s" : "r" }>click me</button>
-   </div>
+    <div className='App'>
+      {classes.map((c, index)=>{
+        // return< Class1 key={index} name={classes.name} finished={classes.finished}/>
+        return c.finished && <h2 key={index}>{c.name}</h2>
+      })}
+    </div>
   )
 }
-
-
+const Class1 =(props)=>{
+  return( <h2>{props.name} : {props.finished}</h2>)
+}
 
 export default App;
 
 
 
 //   <div>
-//     <Job salary={20000} posiotion="Product designerin" company="google"/>
-    
+//     <Job salary={20000} posiotion="Product designerin" company="google"/>  
 //   </div>
 //  )
 // }
