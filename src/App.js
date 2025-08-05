@@ -24,7 +24,9 @@ function App() {
     const course ={
       // too find the andiss  of array
       id:coursList.length === 0? 1: coursList[coursList.length -1].id +1 ,
-      courseName: newCourse}
+      courseName: newCourse,
+      isCompleted : false
+  }
     const newCourseList = [...coursList, course]
     setCourseList(newCourseList)
   }
@@ -32,6 +34,12 @@ function App() {
   const deleteCourse =(courseId) =>{
     setCourseList(coursList.filter((course)=> courseId !== course.id))
   }
+   const compeletCourse =(courseId)=>{
+    const newCourseList = coursList.map((course)=>{
+      if(course.id === courseId) return{...course, isCompleted:true}
+      else  return course
+    })
+   }
   return(
     <div className='App'>
       <div className=' add-course'>
@@ -41,9 +49,10 @@ function App() {
       <div className='list'>
         {coursList.map((course, index)=>{
           return (
-           <Course key={index} course={course} deleteCourse={deleteCourse}/>
+           <Course key={index} course={course}
+            deleteCourse={deleteCourse}
+            compeletCourse={compeletCourse}/>
           )
-          
         })}
       </div>
 
