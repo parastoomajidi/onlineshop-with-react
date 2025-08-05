@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import {useState} from 'react';
+import Course from './Course';
 
 // task 2 map the list
 function App() {
@@ -19,18 +20,17 @@ function App() {
 // add course list
     const addCourse =() =>{
       // we create a new paramether for the compate 2 word that the are same
-      
 
-    const newCourseList = [...coursList, newCourse]
+    const course ={
+      // too find the andiss  of array
+      id:coursList.length === 0? 1: coursList[coursList.length -1].id +1 ,
+      courseName: newCourse}
+    const newCourseList = [...coursList, course]
     setCourseList(newCourseList)
   }
   // we are delte the course in here
-  const deleteCourse =(courseName) =>{
-    const newCourseList = coursList.filter((course)=>{
-      return courseName !== course
-    })
-    setCourseList(newCourseList)
-
+  const deleteCourse =(courseId) =>{
+    setCourseList(coursList.filter((course)=> courseId !== course.id))
   }
   return(
     <div className='App'>
@@ -39,13 +39,12 @@ function App() {
         <button onClick={addCourse}>Add Course</button>
       </div>
       <div className='list'>
-        {coursList.map((course)=>{
+        {coursList.map((course, index)=>{
           return (
-          <div>
-            <h1>{course}</h1>
-            <button onClick={()=>deleteCourse(course)}>x</button>
-          </div>
-        )})}
+           <Course key={index} course={course} deleteCourse={deleteCourse}/>
+          )
+          
+        })}
       </div>
 
     </div>
