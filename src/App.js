@@ -3,29 +3,58 @@ import './App.css';
 import {useEffect, useState} from 'react';
 import Course from './Course';
 import Axios from 'axios';
+import axios from 'axios';
 
-function App() {
-  const[catFact, setCatFact] = useState("")
-  useEffect(()=>{
-    fetchFact()
-  
-}, []);
+function App(){
+  const[name, setName] =useState("")
+  const [predictedAge, setPridectedAge] = useState(0)
 
-// a func for fetch data
-const fetchFact=()=>{
-    Axios.get("https://catfact.ninja/fact").then((res)=>{
-    console.log(res.data)
-    setCatFact(res.data.fact)
-  });
-}
+  const fetchAge =()=>{
+    Axios.get(`https://api.agify.io/?name=${name}`).then((res)=>{
+      console.log(res.data);
+      setPridectedAge(res.data.age)
+    })
+  }
 
   return(
     <div className='App'>
-      <button onClick={fetchFact}>fech data</button>
-      <p>{catFact}</p>
+      <input placeholder='ex, parastoo...' onChange={(event)=> setName(event.target.value)}></input>
+      <button onClick={fetchAge}>Predict age</button>
+      <h1 >Age is:{predictedAge}</h1>
     </div>
   )
+
 }
+
+
+
+
+
+
+
+
+
+
+// function App() {
+//   const[catFact, setCatFact] = useState("")
+//   useEffect(()=>{
+//     fetchFact()
+// }, []);
+
+// // a func for fetch data
+// const fetchFact=()=>{
+//     Axios.get("https://catfact.ninja/fact").then((res)=>{
+//     console.log(res.data)
+//     setCatFact(res.data.fact)
+//   });
+// }
+//   return(
+//     <div className='App'>
+//       <button onClick={fetchFact}>fech data</button>
+//       <p>{catFact}</p>
+//     </div>
+//   )
+// }
 //   // **add crad item project
 //   const [coursList, setCourseList] = useState([]);
 //   // we create another stat for accsess the details of what ever is in input
