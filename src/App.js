@@ -6,35 +6,43 @@ import Axios from 'axios';
 import axios from 'axios';
 
 function App(){
-  const[name, setName] =useState("")
-  const [predictedAge, setPridectedAge] = useState(0)
+  const [generateExcuse, setGenerateExcuse] =useState("");
 
-  const fetchAge =()=>{
-    Axios.get(`https://api.agify.io/?name=${name}`).then((res)=>{
-      console.log(res.data);
-      setPridectedAge(res.data.age)
+  const fetchExcuse = (excuse) => {
+    Axios.get (`https://excuser-three.vercel.app/v1/excuse/${excuse}/`).then((resurce)=>{
+     setGenerateExcuse(resurce.data[0].excuse)
     })
   }
-
-  return(
+  return (
     <div className='App'>
-      <input placeholder='ex, parastoo...' onChange={(event)=> setName(event.target.value)}></input>
-      <button onClick={fetchAge}>Predict age</button>
-      <h1 >Age is:{predictedAge}</h1>
+      <h1>Generate an excuse</h1>
+      <button onClick={()=> fetchExcuse("Party")}>Party</button>
+      <button onClick={()=> fetchExcuse("Family")}>Family</button>
+      <button onClick={()=> fetchExcuse("Office")}>Office</button>
+      <h1>is:{generateExcuse}</h1>
     </div>
-  )
-
+  );
 }
 
+// function App(){
+//   const[name, setName] =useState("")
+//   const [predictedAge, setPridectedAge] = useState(0)
 
+//   const fetchAge =()=>{
+//     Axios.get(`https://api.agify.io/?name=${name}`).then((res)=>{
+//       console.log(res.data);
+//       setPridectedAge(res.data.age)
+//     })
+//   }
 
-
-
-
-
-
-
-
+//   return(
+//     <div className='App'>
+//       <input placeholder='ex, parastoo...' onChange={(event)=> setName(event.target.value)}></input>
+//       <button onClick={fetchAge}>Predict age</button>
+//       <h1 >Age is:{predictedAge}</h1>
+//     </div>
+//   )
+// }
 // function App() {
 //   const[catFact, setCatFact] = useState("")
 //   useEffect(()=>{
