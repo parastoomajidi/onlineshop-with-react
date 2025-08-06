@@ -1,65 +1,83 @@
 import logo from './logo.svg';
 import './App.css';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import Course from './Course';
+import Axios from 'axios';
 
-// task 2 map the list
 function App() {
-  // **add crad item project
-  const [coursList, setCourseList] = useState([]);
-  // we create another stat for accsess the details of what ever is in input
-  const [newCourse, setNewCourse] = useState("");
+  const[catFact, setCatFact] = useState("")
+  useEffect(()=>{
+    fetchFact()
+  
+}, []);
 
-  const handelChange = (event)=>{
-    setNewCourse(event.target.value)
-  }
+// a func for fetch data
+const fetchFact=()=>{
+    Axios.get("https://catfact.ninja/fact").then((res)=>{
+    console.log(res.data)
+    setCatFact(res.data.fact)
+  });
+}
 
-
-
-
-// add course list
-    const addCourse =() =>{
-      // we create a new paramether for the compate 2 word that the are same
-
-    const course ={
-      // too find the andiss  of array
-      id:coursList.length === 0? 1: coursList[coursList.length -1].id +1 ,
-      courseName: newCourse,
-      isCompleted : false
-  }
-    const newCourseList = [...coursList, course]
-    setCourseList(newCourseList)
-  }
-  // we are delte the course in here
-  const deleteCourse =(courseId) =>{
-    setCourseList(coursList.filter((course)=> courseId !== course.id))
-  }
-   const compeletCourse =(courseId)=>{
-    const newCourseList = coursList.map((course)=>{
-      if(course.id === courseId) return{...course, isCompleted:true}
-      else  return course
-    })
-   }
   return(
     <div className='App'>
-      <div className=' add-course'>
-        <input type='text' onChange={handelChange}></input>
-        <button onClick={addCourse}>Add Course</button>
-      </div>
-      <div className='list'>
-        {coursList.map((course, index)=>{
-          return (
-           <Course key={index} course={course}
-            deleteCourse={deleteCourse}
-            compeletCourse={compeletCourse}/>
-          )
-        })}
-      </div>
-
+      <button onClick={fetchFact}>fech data</button>
+      <p>{catFact}</p>
     </div>
   )
-
 }
+//   // **add crad item project
+//   const [coursList, setCourseList] = useState([]);
+//   // we create another stat for accsess the details of what ever is in input
+//   const [newCourse, setNewCourse] = useState("");
+
+//   const handelChange = (event)=>{
+//     setNewCourse(event.target.value)
+//   }
+
+// // add course list
+//     const addCourse =() =>{
+//       // we create a new paramether for the compate 2 word that the are same
+
+//     const course ={
+//       // too find the andiss  of array
+//       id:coursList.length === 0? 1: coursList[coursList.length -1].id +1 ,
+//       courseName: newCourse,
+//       isCompleted : false
+//   }
+//     const newCourseList = [...coursList, course]
+//     setCourseList(newCourseList)
+//   }
+//   // we are delte the course in here
+//   const deleteCourse =(courseId) =>{
+//     setCourseList(coursList.filter((course)=> courseId !== course.id))
+//   }
+//    const compeletCourse =(courseId)=>{
+//     const newCourseList = coursList.map((course)=>{
+//       if(course.id === courseId) return{...course, isCompleted:true}
+//       else  return course
+//     })
+//    }
+//   return(
+//     <div className='App'>
+//       <div className=' add-course'>
+//         <input type='text' onChange={handelChange}></input>
+//         <button onClick={addCourse}>Add Course</button>
+//       </div>
+//       <div className='list'>
+//         {coursList.map((course, index)=>{
+//           return (
+//            <Course key={index} course={course}
+//             deleteCourse={deleteCourse}
+//             compeletCourse={compeletCourse}/>
+//           )
+//         })}
+//       </div>
+
+//     </div>
+//   )
+
+// }
   // const [age, setAge] = useState(0);
   // const increaseAge = ()=>{
   //   setAge(age +1)
