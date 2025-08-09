@@ -1,7 +1,7 @@
 import React  from "react"
 import { useNavigate } from "react-router-dom" 
 
-  const About = ()=>{
+ export const About = ()=>{
     let navigate = useNavigate()
     return 
    (
@@ -12,5 +12,3 @@ import { useNavigate } from "react-router-dom"
      </React.Fragment>
    )
 }
-
-export default About;

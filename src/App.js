@@ -3,15 +3,15 @@ import './App.css';
 import {useEffect, useState} from 'react';
 import Course from './Course';
 import Axios from 'axios';
-import axios from 'axios';
 import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom"
 import { Home } from './Pages/Home';
 import { Contact } from './Pages/Contact';
 import { About } from './Pages/About';
 import { Nav } from './Pages/Nav';
+import {Profile} from './Pages/Profile';
 
 function App(){
-  return
+  return(
     <div className='App '>
       <Router>
         <div>Parastoo</div>
@@ -20,13 +20,16 @@ function App(){
           <Route path="/" element={<Home/>} />
           <Route path='/about' element={<About/>}/>
           <Route path='/contact' element={<Contact/>}/>
+          <Route path='/profile/:name' element={ <Profile/>} />
           <Route path='*' element={<div>Not found</div>}/>
         </Routes>
         <div> this is footer</div>
       </Router>
 
-    </div>;
+    </div>
 
+  )
+    
 }
 
 
