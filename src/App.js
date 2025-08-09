@@ -4,25 +4,70 @@ import {useEffect, useState} from 'react';
 import Course from './Course';
 import Axios from 'axios';
 import axios from 'axios';
+import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom"
+import { Home } from './Pages/Home';
+import { Contact } from './Pages/Contact';
+import { About } from './Pages/About';
+import { Nav } from './Pages/Nav';
 
 function App(){
-  const [generateExcuse, setGenerateExcuse] =useState("");
+  return
+    <div className='App '>
+      <Router>
+        <div>Parastoo</div>
+        <Nav/>
+        <Routes>
+          <Route path="/" element={<Home/>} />
+          <Route path='/about' element={<About/>}/>
+          <Route path='/contact' element={<Contact/>}/>
+          <Route path='*' element={<div>Not found</div>}/>
+        </Routes>
+        <div> this is footer</div>
+      </Router>
 
-  const fetchExcuse = (excuse) => {
-    Axios.get (`https://excuser-three.vercel.app/v1/excuse/${excuse}/`).then((resurce)=>{
-     setGenerateExcuse(resurce.data[0].excuse)
-    })
-  }
-  return (
-    <div className='App'>
-      <h1>Generate an excuse</h1>
-      <button onClick={()=> fetchExcuse("Party")}>Party</button>
-      <button onClick={()=> fetchExcuse("Family")}>Family</button>
-      <button onClick={()=> fetchExcuse("Office")}>Office</button>
-      <h1>is:{generateExcuse}</h1>
-    </div>
-  );
+    </div>;
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// generate excuse
+// function App(){
+//   const [generateExcuse, setGenerateExcuse] =useState("");
+
+//   const fetchExcuse = (excuses) => {
+//     Axios.get (`https://excuser-three.vercel.app/v1/excuse/${excuses}/`).then((resurce)=>{
+//      setGenerateExcuse(resurce.data[0].excuses)
+//     })
+//   }
+//   return (
+//     <div className='App'>
+//       <h1>Generate an excuse</h1>
+//       <button onClick={()=> fetchExcuse("Party")}>Party</button>
+//       <button onClick={()=> fetchExcuse("Family")}>Family</button>
+//       <button onClick={()=> fetchExcuse("Office")}>Office</button>
+//       <h1>is:{generateExcuse}</h1>
+//     </div>
+//   );
+// }
 
 // function App(){
 //   const[name, setName] =useState("")
