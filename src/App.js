@@ -9,27 +9,24 @@ import { Contact } from './Pages/Contact';
 import { About } from './Pages/About';
 import { Nav } from './Pages/Nav';
 import {Profile} from './Pages/Profile';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 function App(){
-  return(
-    <div className='App '>
-      <Router>
-        <div>Parastoo</div>
-        <Nav/>
-        <Routes>
-          <Route path="/" element={<Home/>} />
-          <Route path='/about' element={<About/>}/>
-          <Route path='/contact' element={<Contact/>}/>
-          <Route path='/profile/:name' element={ <Profile/>} />
-          <Route path='*' element={<div>Not found</div>}/>
-        </Routes>
-        <div> this is footer</div>
-      </Router>
-
-    </div>
-
-  )
-    
+  const client = new QueryClient()
+  return <div className='App'>
+     <QueryClientProvider client={client}>
+    <Router>
+      <Nav/>
+      <Routes>
+        <Route path='/' element={<Home/>}/>
+        <Route path='/profile' element={<Profile/>}/>
+        <Route path='/contact' element={<Contact/>}/>
+        <Route path='*' element={<div>Not Found</div>}/>
+      </Routes>
+    </Router>
+     </QueryClientProvider>
+  </div>
+  
 }
 
 
@@ -51,6 +48,27 @@ function App(){
 
 
 
+
+
+// useEffect Hook
+// function App(){
+//   return(
+//     <div className='App '>
+//       <Router>
+//         <div>Parastoo</div>
+//         <Nav/>
+//         <Routes>
+//           <Route path="/" element={<Home/>} />
+//           <Route path='/about' element={<About/>}/>
+//           <Route path='/contact' element={<Contact/>}/>
+//           <Route path='/profile/:name' element={ <Profile/>} />
+//           <Route path='*' element={<div>Not found</div>}/>
+//         </Routes>
+//         <div> this is footer</div>
+//       </Router>
+//     </div>
+//   )  
+// }
 
 // generate excuse
 // function App(){
