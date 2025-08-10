@@ -10,25 +10,15 @@ import { About } from './Pages/About';
 import { Nav } from './Pages/Nav';
 import {Profile} from './Pages/Profile';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { SubmitForm } from './Pages/SubmitForm';
 
 function App(){
-  const client = new QueryClient({defaultOptions:{
-    queries: {refetchOnWindowFocus:false}
-    }})
-  return <div className='App'>
-     <QueryClientProvider client={client}>
-    <Router>
-      <Nav/>
-      <Routes>
-        <Route path='/' element={<Home/>}/>
-        <Route path='/profile' element={<Profile/>}/>
-        <Route path='/contact' element={<Contact/>}/>
-        <Route path='*' element={<div>Not Found</div>}/>
-      </Routes>
-    </Router>
-     </QueryClientProvider>
+  return(
+  <div className='App'>
+    <SubmitForm/>
   </div>
-  
+
+  )
 }
 
 
@@ -51,6 +41,26 @@ function App(){
 
 
 
+// useContext Hook
+// function App(){
+//   const client = new QueryClient({defaultOptions:{
+//     queries: {refetchOnWindowFocus:false}
+//     }})
+//   return <div className='App'>
+//      <QueryClientProvider client={client}>
+//     <Router>
+//       <Nav/>
+//       <Routes>
+//         <Route path='/' element={<Home/>}/>
+//         <Route path='/profile' element={<Profile/>}/>
+//         <Route path='/contact' element={<Contact/>}/>
+//         <Route path='*' element={<div>Not Found</div>}/>
+//       </Routes>
+//     </Router>
+//      </QueryClientProvider>
+//   </div>
+  
+// }
 
 // useEffect Hook
 // function App(){
