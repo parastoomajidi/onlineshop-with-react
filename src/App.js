@@ -11,11 +11,18 @@ import { Nav } from './Pages/Nav';
 import {Profile} from './Pages/Profile';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { SubmitForm } from './Pages/SubmitForm';
+import { useToggeleBtn } from './Components/useToggel';
+import { isVisible } from '@testing-library/user-event/dist/utils';
 
 function App(){
+  const[isVisible, toggle] = useToggeleBtn()
   return(
   <div className='App'>
-    <SubmitForm/>
+    {/* <SubmitForm/> */}
+    <button onClick={toggle}>
+      {isVisible? "hidw": "show"}
+    </button>
+    {isVisible && <h1>this is my  hidden text:)</h1>}
   </div>
 
   )
