@@ -14,18 +14,11 @@ import { SubmitForm } from './Pages/SubmitForm';
 import { useToggeleBtn } from './Components/useToggel';
 import { isVisible } from '@testing-library/user-event/dist/utils';
 
-function App(){
-  const[isVisible, toggle] = useToggeleBtn()
-  return(
-  <div className='App'>
-    {/* <SubmitForm/> */}
-    <button onClick={toggle}>
-      {isVisible? "hidw": "show"}
-    </button>
-    {isVisible && <h1>this is my  hidden text:)</h1>}
+ function App(){
+  <div>
+    <Fact/>
   </div>
 
-  )
 }
 
 
@@ -45,6 +38,23 @@ function App(){
 
 
 
+
+
+
+
+// function App(){
+//   const[isVisible, toggle] = useToggeleBtn()
+//   return(
+//   <div className='App'>
+//     {/* <SubmitForm/> */}
+//     <button onClick={toggle}>
+//       {isVisible? "hidw": "show"}
+//     </button>
+//     {isVisible && <h1>this is my  hidden text:)</h1>}
+//   </div>
+
+//   )
+// }
 
 
 
