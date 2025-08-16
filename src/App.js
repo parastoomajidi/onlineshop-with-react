@@ -17,27 +17,20 @@ import { isVisible } from '@testing-library/user-event/dist/utils';
 import { Fact } from './Components/Func';
 import { Provider } from 'react-redux';
 import { store } from './ComponentsRedux/Store';
- function App(){
+import { Person } from './Pages/PersonTS';
+// TypeScript
+function App(){
+  const name = "parastoo"
+  return (
+<div>
+  <Person 
+  name="dd"
+  email={"test@g.com"}
+  Courses ={["re","html"]}
+  />
 
-  return(<div className='App'>
-    
-    <Provider store={store}>
-    <Router>
-      <Link to="/">home</Link>|
-      <Link to="/login">login</Link>|
-      <Link to="/contact">contact</Link>
-      <Routes>
-        <Route path='/' element={<Home/>} />
-        <Route path='/login' element={<Login/>}/>
-        <Route path='/contact' element={<Contact/>}/>
-      </Routes>
-    </Router>
-    </Provider>
-
-
-
-  </div>)
- 
+</div>
+ )
 
 }
 
@@ -50,17 +43,26 @@ import { store } from './ComponentsRedux/Store';
 
 
 
+// // redux
+//  function App(){
+//   return(<div className='App'>
+   
+//     <Provider store={store}>
+//     <Router>
+//       <Link to="/">home</Link>|
+//       <Link to="/login">login</Link>|
+//       <Link to="/contact">contact</Link>
+//       <Routes>
+//         <Route path='/' element={<Home/>} />
+//         <Route path='/login' element={<Login/>}/>
+//         <Route path='/contact' element={<Contact/>}/>
+//       </Routes>
+//     </Router>
+//     </Provider>
 
+//   </div>)
 
-
-
-
-
-
-
-
-
-
+// }
 
 // function App(){
 //   const[isVisible, toggle] = useToggeleBtn()
