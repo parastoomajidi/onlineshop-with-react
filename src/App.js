@@ -6,6 +6,7 @@ import Axios from 'axios';
 import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom"
 import { Home } from './Pages/Home';
 import { Contact } from './Pages/Contact';
+import { Login } from './Pages/Login';
 import { About } from './Pages/About';
 import { Nav } from './Pages/Nav';
 import {Profile} from './Pages/Profile';
@@ -13,11 +14,30 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { SubmitForm } from './Pages/SubmitForm';
 import { useToggeleBtn } from './Components/useToggel';
 import { isVisible } from '@testing-library/user-event/dist/utils';
-
+import { Fact } from './Components/Func';
+import { Provider } from 'react-redux';
+import { store } from './ComponentsRedux/Store';
  function App(){
-  <div>
-    <Fact/>
-  </div>
+
+  return(<div className='App'>
+    
+    <Provider store={store}>
+    <Router>
+      <Link to="/">home</Link>|
+      <Link to="/login">login</Link>|
+      <Link to="/contact">contact</Link>
+      <Routes>
+        <Route path='/' element={<Home/>} />
+        <Route path='/login' element={<Login/>}/>
+        <Route path='/contact' element={<Contact/>}/>
+      </Routes>
+    </Router>
+    </Provider>
+
+
+
+  </div>)
+ 
 
 }
 
